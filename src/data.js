@@ -12,8 +12,14 @@ var circle = L.circle([35.55, 129.29], {
     radius: 500
 }).addTo(mymap);
 
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
+mymap.on('click', function(e){
+  var lt = String(e.latlng.lat),
+  lg = String(e.latlng.lng);
+  var popup = L.popup()
+	.setLatLng(e.latlng)
+	.setContent(lt + " " + lg)
+	.openOn(mymap);
+});
 // var geojsonFeature = {
 //     "type": "Feature",
 //     "properties": {
