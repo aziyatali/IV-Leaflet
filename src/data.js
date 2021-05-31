@@ -13,7 +13,15 @@ var circle = L.circle([35.55, 129.29], {
 }).addTo(mymap);
 
 
+d3.json("owid-covid-data.json", function(err, data) {
+  if (err){
+    console.log("error occured", err);
+  }else{
+    console.log("Loaded data: ", data);
+  }
+})
 
+// var myData = JSON.parse()
 
 // let colorratio = {
 //   1:"green",
