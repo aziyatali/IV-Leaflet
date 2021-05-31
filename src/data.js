@@ -13649,38 +13649,22 @@ console.log(Http.responseText)
 }
 
 });
-// [0].geometry.coordinates[0][0][0]
-console.log("Country List: ", countries.features.length);
 
 
 mymap.on('click', function(e){
   var lt = String(e.latlng.lat),
   lg = String(e.latlng.lng);
 
-  for (var i = 0; i < countries.features.length; i++){
-    console.log("In the loop");
-    var index =  countries.features[i].geometry.coordinates[0][0];
-    if (index[0][0] === lt && index[0][1] === lg){
-      console.log("name: ", countries.features.properties.name);
-      break;
-    }
-    // console.log(index[0][0]);
-  }
+  // for (var i = 0; i < countries.features.length; i++){
+  //   console.log("In the loop");
+  //   var index =  countries.features[i].geometry.coordinates[0][0];
+  //   if (index[0][0] === lt && index[0][1] === lg){
+  //     console.log("name: ", countries.features.properties.name);
+  //     break;
+  //   }
+  // }
   var popup = L.popup()
 	.setLatLng(e.latlng)
 	.setContent(lt + " " + lg)
 	.openOn(mymap);
 });
-// var geojsonFeature = {
-//     "type": "Feature",
-//     "properties": {
-//         "name": "Coors Field",
-//         "amenity": "Baseball Stadium",
-//         "popupContent": "This is where the Rockies play!"
-//     },
-//     "geometry": {
-//         "type": "Point",
-//         "coordinates": [35.55, 129.29]
-//     }
-// };
-// L.geoJSON(geojsonFeature).addTo(mymap);
