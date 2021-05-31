@@ -12,14 +12,19 @@ var circle = L.circle([35.55, 129.29], {
     radius: 500
 }).addTo(mymap);
 
-
+var myData;
 d3.json("owid-covid-data.json", function(err, data) {
   if (err){
     console.log("error occured", err);
   }else{
+    myData = JSON.parse(data);
+    console.log("Parsed data: ", myData);
     console.log("Loaded data: ", data);
   }
 })
+
+
+
 
 // var myData = JSON.parse()
 
