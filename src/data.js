@@ -13599,72 +13599,63 @@ var countries = {
 }]
 };
 
-// L.geoJSON(countries, {
-// style: function(feature) {
-//   return {
-//     fillColor: "#D3D3D3", // Default color of countries.
-//     fillOpacity: 1,
-//     stroke: true,
-//     color: "grey", // Lines in between countries.
-//     weight: 2
-//   };
-// }
-// }).bindPopup(function(layer) {
-// return layer.feature.properties.name;
-// }).addTo(mymap);
+L.geoJSON(countries, {
+style: function(feature) {
+  return {
+    fillColor: "#D3D3D3", // Default color of countries.
+    fillOpacity: 1,
+    stroke: true,
+    color: "grey", // Lines in between countries.
+    weight: 2
+  };
+}
+}).bindPopup(function(layer) {
+return layer.feature.properties.name;
+}).addTo(mymap);
 
-// function getColor(d) {
-//   return d > 1000 ? '#800026' :
-//          d > 500  ? '#BD0026' :
-//          d > 200  ? '#E31A1C' :
-//          d > 100  ? '#FC4E2A' :
-//          d > 50   ? '#FD8D3C' :
-//          d > 20   ? '#FEB24C' :
-//          d > 10   ? '#FED976' :
-//                     '#FFEDA0';
-// }
-// function style(feature) {
-//   return {
-//       fillColor: getColor(feature.fillColor),
-//       weight: 2,
-//       opacity: 1,
-//       color: 'white',
-//       dashArray: '3',
-//       fillOpacity: 0.7
-//   };
-// }
-
-// L.geoJson(countries, {style: style}).addTo(mymap);
-
-mymap.on('click', function(ev) {
-  console.log(ev);
-  alert(ev.latlng);
-  const Http = new XMLHttpRequest();
-const url='http://api.geonames.org/findNearbyPlaceName?lat=47.3&lng=9&username=aziyatali';
-Http.open("GET", url);
-Http.send();
-
-Http.onreadystatechange = (e) => {
-console.log(Http.responseText)
+function getColor(d) {
+  return d > 1000 ? '#800026' :
+         d > 500  ? '#BD0026' :
+         d > 200  ? '#E31A1C' :
+         d > 100  ? '#FC4E2A' :
+         d > 50   ? '#FD8D3C' :
+         d > 20   ? '#FEB24C' :
+         d > 10   ? '#FED976' :
+                    '#FFEDA0';
+}
+function style(feature) {
+  return {
+      fillColor: getColor(feature.fillColor),
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7
+  };
 }
 
-});
+L.geoJson(countries, {style: style}).addTo(mymap);
 
 
 mymap.on('click', function(e){
   var lt = String(e.latlng.lat),
   lg = String(e.latlng.lng);
 
-  // for (var i = 0; i < countries.features.length; i++){
-  //   console.log("In the loop");
-  //   var index =  countries.features[i].geometry.coordinates[0][0];
-  //   if (index[0][0] === lt && index[0][1] === lg){
-  //     console.log("name: ", countries.features.properties.name);
-  //     break;
-  //   }
-  // }
+  const Http = new XMLHttpRequest();
+  const url='http://api.geonames.org/findNearbyPlaceNameJSON?lat='+lt+'&lng='+lg+'&username=aziyatali';
+  Http.open("GET", url);
+  Http.send();
+
+ Http.onreadystatechange = (ev) => {
+  var countryData = JSON.parse(Http.responseText);
+  console.log(countryData);
+  var countryName = countryData.geonames[0].countryName;
+  console.log("My requestL ", countryName);
   var popup = L.popup()
 	.setLatLng(e.latlng)
-	.setContent(lt + " " + lg)
+	.setContent(countryName)
 	.openOn(mymap);
+}
+  
+
 });
