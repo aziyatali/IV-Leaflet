@@ -13633,16 +13633,3 @@ Http.onreadystatechange = (e) => {
 }
 
 });
-
-// var myData;
-// d3.json("owid-covid-data.json", function(error, data){
-//     if (error){
-//         console.log(error);
-//     }else{
-
-//     console.log(data.KOR)
-//     for (let isoCountryName in data) {
-//         console.log(data.isoCountryName);
-//     }
-// }
-// });
