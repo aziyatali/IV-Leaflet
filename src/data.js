@@ -24,7 +24,7 @@ d3.json("owid-covid-data.json", function(err, data) {
 })
 
 
-mymap.on('click', function(e){
+mymap.on('mouseover', function(e){
   var lt = String(e.latlng.lat),
   lg = String(e.latlng.lng);
 
