@@ -4,14 +4,12 @@ import { features } from "../data/countries.json";
 //    this.setState(features);
 
 class LoadCountryTask {
-  covidUrl =
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/web-data/data/cases_country.csv";
-
+  covidUrl = "https://raw.githubusercontent.com/aziyatali/IV-Leaflet/main/src/data/owid-covid-data.csv";
+   
   setState = null;
 
   load = (setState) => {
     this.setState = setState;
-
     papa.parse(this.covidUrl, {
       download: true,
       header: true,
@@ -20,6 +18,7 @@ class LoadCountryTask {
   };
 
   #processCovidData = (covidCountries) => {
+    console.log("parsed data: ", covidCountries);
     for (let i = 0; i < features.length; i++) {
       const country = features[i];
       //console.log(country);
