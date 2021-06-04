@@ -13,12 +13,14 @@ const CovidMap = ({ countries }) => {
   const onEachCountry = (country, layer) => {
     layer.options.fillColor = country.properties.color;
     const name = country.properties.ADMIN;
+    console.log("my country: ", country);
     const confirmedText = country.properties.confirmedText;
     layer.bindPopup(`${name} ${confirmedText}`);
   };
 
   return (
-    <Map style={{ height: "90vh" }} zoom={2} center={[20, 60]}>
+    // set viewpoint to Ulsan, ROK
+    <Map style={{ height: "90vh" }} zoom={8} center={[35.549999, 129.316666]}>
       <GeoJSON
         style={mapStyle}
         data={countries}
