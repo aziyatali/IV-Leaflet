@@ -1,7 +1,7 @@
 import papa from "papaparse";
 import legendItems from "../entities/LegendItems";
 import { features } from "../data/countries.json";
-console.log(features);
+// console.log(features);
 class LoadCountryTask {
   covidUrl = "https://raw.githubusercontent.com/aziyatali/IV-Leaflet/main/src/data/owid-covid-data.csv";
    
@@ -17,7 +17,7 @@ class LoadCountryTask {
   };
 
   #processCovidData = (covidCountries) => {
-    console.log("parsed data: ", covidCountries);
+    // console.log("parsed data: ", covidCountries);
     for (let i = 0; i < features.length; i++) {
       const country = features[i];
       //console.log(country);
@@ -31,7 +31,7 @@ class LoadCountryTask {
 
       if (covidCountry != null) {
         let confirmed = Number(covidCountry.total_cases);
-        console.log("CASE: ", confirmed);
+        // console.log("CASE: ", confirmed);
         country.properties.confirmed = confirmed;
         country.properties.confirmedText = this.#formatNumberWithCommas(
           confirmed
