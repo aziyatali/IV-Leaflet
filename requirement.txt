@@ -1,8 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Guide for how to run the project:
 
-## Available Scripts
+Please, download the node.js based on your Operating System(for windows, Ubuntu or Mac):
+https://nodejs.org/en/download/
 
-In the project directory, you can run:
+In the project directory, you can run my project with:
 
 ### `npm start`
 
